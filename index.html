@@ -1,0 +1,49 @@
+<html ng-app="cafe">
+<head>
+	<title>SiEBEN Cafe</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="bower_components\bootstrap\dist\css\bootstrap-theme.min.css">
+
+	<script type="text/javascript" src="bower_components\bootstrap\dist\js\bootstrap.min.js"></script>
+
+	<script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.7.min.js"></script>
+
+	<script type="text/javascript" src="bower_components/angularjs/angular.min.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="bower_components/ngstorage/ngStorage.min.js"></script>
+
+</head>
+<body class="container">
+	<div class="row text-center">
+		<img src="imgs/logo.jpeg" width="300"/>
+		<div ng-show="loggedIn">
+			<div style="display:inline-block;vertical-align:middle;    font-family: Arial;    font-size: 14px;    color: #244;">
+				Logged in as {{fbdata.name}}<br>
+				<small style="color:#aaa" ng-click="logout();">Logout</small>
+			</div>
+			 <img ng-src="{{fbpicsrc}}" style="width:75px;height:75px;border-radius:50px;box-shadow: 0px 0px 4px 2px #cecece;">
+			
+		</div>
+		<div ng-hide="loggedIn">
+			<button class="btn btn-primary" ng-click="login();">Login</button>
+		</div>
+	</div>
+
+	<div class="row text-center">
+		<div class="col-xs-6 col-xs-offset-4	">
+			<ul class="nav nav-pills">
+			  <li role="presentation" ui-sref-active="active"><a ui-sref="main">Home</a></li>
+			  <li role="presentation" ui-sref-active="active"><a ui-sref="order">Coffee</a></li>
+			  <li role="presentation" ui-sref-active="active"><a href="#">Food</a></li>
+			  <li role="presentation" ui-sref-active="active"><a href="#">Chat</a></li>
+			</ul>
+		</div>
+	</div>
+	<div ui-view></div>
+	
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

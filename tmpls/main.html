@@ -1,0 +1,109 @@
+<div ng-init="confirmModal = false;">
+  <div class="panel panel-default" ng-init="getAll()">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Orders <button ng-click="getAll();">Refresh</button></div>
+    <div class="panel-body">
+      <p>Καφέδες προς παραγγελεία. Ας πούμε 9 παρα τέταρτο η πρώτη παραγγελεία</p>
+    </div>
+
+    <!-- Table -->
+    <table class="table">
+    	<tr>
+    		<th>
+    			User
+    		</th>
+    		<th>
+    			Text
+    		</th>
+    		<th>
+    			Action
+    		</th>
+    	</tr>
+      <tr ng-repeat="o in orders">
+      	<td>{{o.user}}</td>
+      	<td>{{o.text}}</td>
+      	<td><button class="btn btn-primary" ng-click="del(o);" ng-if="o.userId == user.userId">Remove</button></td>
+      </tr>
+    </table>
+    <button class="btn btn-primary" style="float:right;"  data-toggle="modal" data-target=".confirmModal">Confirm Order</button>
+  </div>
+
+
+  <!-- MODAL FOR PARAGGELIA -->
+  <div class="modal fade confirmModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Confirm an order</h4>
+        </div>
+        <div class="modal-body">
+          <p> Are you sure you have ordered all the pending coffees ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".knowledgeModal">No</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="orderComplete();">Yes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <!-- MODAL FOR PARAGGELIA -->
+  <div class="modal fade knowledgeModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Confirm an order</h4>
+        </div>
+        <div class="modal-body">
+          <p> Select your gender </p>
+          <!-- <p> Liitle person this button is for confirming that you actually called a cafeteria and made this order... </p> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target=".male">Male</button>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target=".female">Female</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade male">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Confirm an order</h4>
+        </div>
+        <div class="modal-body">
+          <p> Αγόρι μου είσαι καθυστερημένος ? </p>
+          <!-- <p> Liitle person this button is for confirming that you actually called a cafeteria and made this order... </p> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ναί</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Δε γνωρίζω/Δεν απαντώ</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade female">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Confirm an order</h4>
+        </div>
+        <div class="modal-body">
+          <p> Κορίτσι μου είσαι καθυστερημένη ? </p>
+          <!-- <p> Liitle person this button is for confirming that you actually called a cafeteria and made this order... </p> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ναί</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Δε γνωρίζω/Δεν απαντώ</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>

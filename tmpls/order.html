@@ -1,0 +1,61 @@
+<div ng-hide="fbdata">
+	<font style="font-weight:bold;font-size:16px;">Login to order a coffee :)</font>
+</div>
+<div ng-show="fbdata">
+
+	<form ng-submit="insert();">
+	  <div class="form-group">
+	    <label for="kafes">Καφές</label>
+	    <div class="dropdown" id="kafes">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		    {{cafe.body.name}}
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		    <li ng-repeat="b in bodies"><a ng-click="cafe.body = b;">{{b.name}}</a></li>
+		  </ul>
+		</div>
+	  </div>
+	  <div class="form-group">
+	    <label for="zaxari">Ζάχαρη</label>
+	    <div class="dropdown" id="zaxari">
+		  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		    {{cafe.sugar.name}}
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+		    <li ng-repeat="s in sugars"><a ng-click="cafe.sugar = s;">{{s.name}}</a></li>
+		  </ul>
+		</div>
+	  </div>
+	  <div class="form-group">
+	    <label for="extras">Extras</label>
+	    <div id="extras">
+		    <div style="display:inline-block;" class="col-xs-4" ng-repeat="x in extras">
+		    	 <div class="checkbox">
+				    <label>
+				      <input type="checkbox" ng-model="x.selected" ng-change="addRemove(x);"> {{x.name}}
+				    </label>
+				  </div>
+		    </div>
+		    <div style="clear:both;"></div>
+		</div>
+	  </div>
+	  <div class="form-group">
+	    <label for="extras">Comment</label>
+	    <div id="extras">
+		    <div style="display:inline-block;" class="col-xs-4">
+		    	 <textarea ng-model="cafe.comments" style="width:600px;height:70px"></textarea>
+		    </div>
+		    <div style="clear:both;"></div>
+		</div>
+	  </div>
+
+	  </br>
+	  </br>
+	  <div class="form-group" ng-show="cafe.body.value!= undefined && cafe.sugar.value != undefined">
+	  	Θέλω έναν {{cafe.body.name}} {{cafe.sugar.name}} <span ng-repeat="add in cafe.extras">{{add.name}} </span> <span ng-if="cafe.comments"> ({{cafe.comments}}) </span>
+	  </div>
+	  <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+</div>
