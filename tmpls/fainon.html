@@ -1,0 +1,19 @@
+<div>
+  <div class="panel panel-default" ng-init="getFainonAll()">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Orders <button ng-click="getFainonAll();">Refresh</button></div>
+    <div class="panel-body">
+      <p>Fainon Feed</p>
+    </div>
+    <!-- Table -->
+    <table class="table">
+      	<tr ng-repeat="dato in data">
+      		<td align="center" ng-class="{'active' : !dato.simerino , 'sucess' : dato.simerino}">
+      			<span>{{dato.story}}</span><br>
+      			<img src="{{dato.lpic}}" width="600"/>
+      		</td>
+      	</tr>
+    </table>
+    <button class="btn btn-primary" style="float:right;"  data-toggle="modal" data-target=".confirmModal">Confirm Order</button>
+  </div>
+</div>

@@ -2,6 +2,8 @@
 
 var app = angular.module("cafe" , ['ui.router','ngStorage']);
 
+var graphUrl = "https://graph.facebook.com/v2.3/";
+
 app.config(function($stateProvider, $urlRouterProvider) {
   //
   // For any unmatched url, redirect to /state1
@@ -17,6 +19,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('order', {
       url: "/order",
       templateUrl: "tmpls/order.html",
+      controller: "orderCtrl"
+    })
+    .state('fainon', {
+      url: "/fainon",
+      templateUrl: "tmpls/fainon.html",
       controller: "orderCtrl"
     });
 });
@@ -163,6 +170,37 @@ app.controller("orderCtrl",['$scope' , '$rootScope' , '$localStorage' , function
         $scope.orders = res;
       });
     });
+  }
+  var getImage = function(i){
+    var lpic = graphUrl + $scope.data[i].object_id + "?access_token=" + $localStorage.fbtoken;
+    $.get(lpic).then(function(result){
+      $scope.$applyAsync(function(){
+        $scope.data[i].lpic = result.images[0].source;
+      });
+    });
+  }
+  $scope.getFainonAll = function(){
+    var fainonId = "662166840552032";
+    var urlToHit = graphUrl + fainonId + "/feed?access_token=" + $localStorage.fbtoken;
+    $.get(urlToHit).then(function(results){
+      $scope.$apply(function(){
+        var r = [];
+        for(var i in results.data){
+          if( results.data[i].type == "photo" ){
+            r.push(results.data[i]);
+          }
+        }
+        $scope.data = r;
+        var today = new Date().getDay();
+        for(var i in $scope.data){
+          if( new Date($scope.data[i].created_time).getDay() == today ){
+            $scope.data[i].simerino = true;
+          }
+          getImage(i);
+        }
+      });
+    });
+
   }
 
   $scope.del = function(item){
