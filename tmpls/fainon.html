@@ -9,8 +9,9 @@
     <table class="table">
       	<tr ng-repeat="dato in data">
       		<td align="center" ng-class="{'active' : !dato.simerino , 'sucess' : dato.simerino}">
-      			<span>{{dato.story}}</span><br>
-      			<img src="{{dato.lpic}}" width="600"/>
+      			<span>{{dato.story}}</span> <strong>{{dato.created_time | date : 'EEEE'}}</strong><br>
+      			<span>{{dato.message}}</span><br>
+      			<img ng-src="{{dato.lpic}}" width="600"/>
       		</td>
       	</tr>
     </table>
